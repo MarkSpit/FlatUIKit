@@ -11,10 +11,10 @@
 
 @implementation UIBarButtonItem (FlatUI)
 
-+ (void) configureFlatButtonsWithColor:(UIColor *) color
-                      highlightedColor:(UIColor *)highlightedColor
-                          cornerRadius:(CGFloat) cornerRadius {
-    
++(void)configureButtonsWithColor:(UIColor *) color
+              highlightedColor:(UIColor *)highlightedColor
+                  cornerRadius:(CGFloat) cornerRadius
+                     forButton:(id)button{
     UIImage *backButtonPortraitImage = [UIImage backButtonImageWithColor:color
                                                               barMetrics:UIBarMetricsDefault
                                                             cornerRadius:cornerRadius];
@@ -46,7 +46,24 @@
     
     UIImage *buttonImage = [UIImage imageWithColor:color cornerRadius:cornerRadius];
     [[UIBarButtonItem appearance] setBackgroundImage:buttonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    
+}
+
++ (void) configureFlatButtonsWithColor:(UIColor *) color
+                      highlightedColor:(UIColor *)highlightedColor
+                          cornerRadius:(CGFloat) cornerRadius {    
+    [UIBarButtonItem configureButtonsWithColor:color
+                              highlightedColor:highlightedColor
+                                  cornerRadius:cornerRadius
+                                     forButton:[UIBarButtonItem appearance]];
+}
+
+-(void) configureFlatButtonsWithColor:(UIColor *) color
+                     highlightedColor:(UIColor *)highlightedColor
+                         cornerRadius:(CGFloat) cornerRadius {
+    [UIBarButtonItem configureButtonsWithColor:color
+                              highlightedColor:highlightedColor
+                                  cornerRadius:cornerRadius
+                                     forButton:self];
 }
 
 @end
